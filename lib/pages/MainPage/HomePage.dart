@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     "Jakarta, Indonesia",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 13,
                     ),
                   ),
                   Icon(
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 4),
                               Text(
                                 "Dr. John Doe",
                                 style: TextStyle(
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 5),
+                              const SizedBox(height: 2),
                               Text(
                                 "Dokter Umum",
                                 style: TextStyle(
@@ -304,15 +304,15 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               "The Benefits of Papaya",
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            const SizedBox(height: 2),
                             Text(
                               "Health",
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 12,
                                 color: Colors.grey,
                               ),
                             ),

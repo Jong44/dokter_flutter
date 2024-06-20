@@ -1,5 +1,7 @@
 import 'package:dokter_app/components/pages/DokterPage/CardKategoriDokter.dart';
 import 'package:dokter_app/config/ColorConfig.dart';
+import 'package:dokter_app/components/pages/DokterPage/CardDokter.dart';
+import 'package:dokter_app/pages/DetailPage/DokterDetail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -25,6 +27,8 @@ class _DokterPageState extends State<DokterPage> {
     ColorConfig.secondaryTextColor,
     ColorConfig.tertiaryTextColor,
   ];
+
+  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,10 @@ class _DokterPageState extends State<DokterPage> {
                           ),
                           Expanded(
                             child: TextField(
+                              onChanged: (value) {
+                                setState(() {});
+                              },
+                              controller: _searchController,
                               style: TextStyle(fontSize: 14),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -62,21 +70,30 @@ class _DokterPageState extends State<DokterPage> {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.all(8),
-                            width: 25,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: ColorConfig.primaryColor, width: 2),
-                            ),
-                            child: Icon(
-                              CupertinoIcons.xmark,
-                              color: ColorConfig.primaryColor,
-                              size: 15,
-                            ),
-                          )
+                          _searchController.text.isNotEmpty
+                              ? InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _searchController.clear();
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.all(8),
+                                    width: 25,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: ColorConfig.primaryColor,
+                                          width: 2),
+                                    ),
+                                    child: Icon(
+                                      CupertinoIcons.xmark,
+                                      color: ColorConfig.primaryColor,
+                                      size: 15,
+                                    ),
+                                  ))
+                              : const SizedBox.shrink(),
                         ],
                       ),
                     ),
@@ -135,99 +152,15 @@ class _DokterPageState extends State<DokterPage> {
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(vertical: 16),
-                    decoration: BoxDecoration(
-                        border: Border(
-                      bottom: BorderSide(
-                        color: Colors.grey[200]!,
-                        width: 1,
-                      ),
-                    )),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 70,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/doctor.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                  return CardDokter(
+                    onpressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DokterDetail(),
                         ),
-                        const SizedBox(width: 16),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dr. Stella Kane',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'General Practitioner',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.yellow[700],
-                                  size: 16,
-                                ),
-                                Text(
-                                  '4.5  (25)',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Rp 50.000',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: ColorConfig.primaryColor,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                "Book",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                      );
+                    },
                   );
                 },
               )

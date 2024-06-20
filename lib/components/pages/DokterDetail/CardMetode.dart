@@ -16,7 +16,7 @@ class CardMetode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: isSelected
             ? ColorConfig.primaryColor
@@ -31,7 +31,7 @@ class CardMetode extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
               color: isSelected ? Colors.white : ColorConfig.primaryColor,
             ),

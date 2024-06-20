@@ -18,8 +18,8 @@ class CardTanggalSchedule extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.center,
-          width: 70,
-          height: 70,
+          width: 60,
+          height: 60,
           decoration: BoxDecoration(
             color: isSelected
                 ? ColorConfig.primaryColor
@@ -29,7 +29,7 @@ class CardTanggalSchedule extends StatelessWidget {
           child: Text(
             tanggal,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               color: isSelected ? Colors.white : ColorConfig.primaryColor,
             ),
@@ -39,7 +39,7 @@ class CardTanggalSchedule extends StatelessWidget {
         Text(
           hari,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 13,
             fontWeight: FontWeight.w500,
             color: ColorConfig.textGrey,
           ),

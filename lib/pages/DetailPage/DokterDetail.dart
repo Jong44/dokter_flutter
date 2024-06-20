@@ -37,7 +37,7 @@ class DokterDetailState extends State<DokterDetail> {
     {"tanggal": "15", "hari": "Mon"},
     {"tanggal": "16", "hari": "Tue"},
     {"tanggal": "17", "hari": "Wed"},
-    {"tanggal": "18", "hari": "Thu"},
+    {"tanggal": "16", "hari": "Thu"},
     {"tanggal": "19", "hari": "Fri"},
     {"tanggal": "20", "hari": "Sat"},
     {"tanggal": "21", "hari": "Sun"},
@@ -63,6 +63,11 @@ class DokterDetailState extends State<DokterDetail> {
 
   int indexSelectedMetode = 0;
 
+  Map _selectedPurchase = {
+    "name": "Dr. John Doe",
+    "price": "Rp 100.000",
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +75,7 @@ class DokterDetailState extends State<DokterDetail> {
         elevation: 0,
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
+        scrolledUnderElevation: 0,
       ),
       body: SafeArea(
         child: Padding(
@@ -100,7 +106,7 @@ class DokterDetailState extends State<DokterDetail> {
                         Text(
                           'Dr. John Doe',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -108,7 +114,7 @@ class DokterDetailState extends State<DokterDetail> {
                         Text(
                           'MBBS, MD - General Medicine',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 13,
                             color: ColorConfig.textGrey,
                           ),
                         ),
@@ -120,7 +126,7 @@ class DokterDetailState extends State<DokterDetail> {
                             Text(
                               '4.5  (200)',
                               style: TextStyle(
-                                  fontSize: 14, color: ColorConfig.textGrey),
+                                  fontSize: 13, color: ColorConfig.textGrey),
                             ),
                           ],
                         )
@@ -154,7 +160,7 @@ class DokterDetailState extends State<DokterDetail> {
                 Text(
                   'Doctor\'s Biography',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -171,7 +177,7 @@ class DokterDetailState extends State<DokterDetail> {
                 Text(
                   'Doctor\'s Schedule',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -209,7 +215,7 @@ class DokterDetailState extends State<DokterDetail> {
                 Text(
                   'Available Time',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -237,7 +243,7 @@ class DokterDetailState extends State<DokterDetail> {
                 Text(
                   'Consultation Method',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -280,8 +286,16 @@ class DokterDetailState extends State<DokterDetail> {
           text: 'Book (Rp 100.000)',
           icon: Iconsax.calendar,
           onpress: () {
+            _selectedPurchase['schedule'] = _tanggalHari[indexSelectedSchedule];
+            _selectedPurchase['time'] = _time[indexSelectedTime];
+            _selectedPurchase['metode'] = _metode[indexSelectedMetode];
+
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ReportPage()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ReportPage(
+                          data: _selectedPurchase,
+                        )));
           },
         ),
       ),

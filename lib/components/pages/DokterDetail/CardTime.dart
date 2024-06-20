@@ -23,7 +23,7 @@ class CardTime extends StatelessWidget {
       child: Text(
         time,
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 12,
           fontWeight: FontWeight.bold,
           color: isSelected ? Colors.white : ColorConfig.primaryColor,
         ),
